@@ -1,5 +1,6 @@
 import discord
 from discord.ext import commands
+import toc
 
 bot = commands.Bot(command_prefix='*', description='A bot for members of the Cocánb')
 
@@ -18,6 +19,16 @@ class Cocanb(commands.Cog):
     else:
       await ctx.send ('Invalid format')
 
+  @bot.command(name="toc", help="Translate from any language into Cocanb")
+  async def toc (self, ctx, *, sentences):
+    if sentences[-1] == '.':
+        sentences= sentences[:-1]
+    sens = sentences.split(".")
+    final = ""
+    for sen in sens:
+        final = final + t.toCocanb(sen) + ". "
+        await ctx.send(final)
+      
   @bot.command (name="script", help= "Sends the Cocánb symbols\nSupported: cocanb/cocánb, cock, and, ball, torture, shit, cringe, constriction, onomatopoeia/onomatopœia, altort\n(Words separated with / output the same thing)")
   async def script(self, ctx, *, word):
     word = word.lower()
