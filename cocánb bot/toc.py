@@ -150,13 +150,3 @@ def toCocanb(s):
         final = final.replace(' '*x, ' ')
 
     return final[0].upper() + final[1::]
-
-
-given = input("Enter English String: ")
-if given[-1] == '.':
-    given = given[:-1]
-print(given)
-sens = given.split(".")
-for sen in sens:
-    print(toCocanb(sen), end='. ')
-print("")
