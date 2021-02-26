@@ -29,7 +29,8 @@ class Cocanb(commands.Cog):
     sens = arg.split('.')
     for sen in sens:
         final = final + toc.toCocanb(sen) + ". "
-    await ctx.send(final)
+    await ctx.message.delete()
+    await ctx.send('[{.author.mention}]: '.format(ctx) + final)
       
   @bot.command (name="script", help= "Sends the Cocánb symbols\nSupported: cocanb/cocánb, cock, and, ball, torture, shit, cringe, constriction, onomatopoeia/onomatopœia, altort\n(Words separated with / output the same thing)")
   async def script(self, ctx, *, word):
