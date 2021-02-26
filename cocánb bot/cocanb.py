@@ -20,17 +20,15 @@ class Cocanb(commands.Cog):
       await ctx.send ('Invalid format')
 
   @bot.command(name="toc", help="Translate from any language into Cocanb")
-  async def toc (self, ctx, *, sentences: str=None):
-    if sentences is None:
-      await ctx.send("Translate from any language to Cocanb")
-    else:
-      if sentences[-1] == '.':
-          sentences= sentences[:-1]
-      sens = sentences.split(".")
-      final = ""
-      for sen in sens:
-          final = final + t.toCocanb(sen) + ". "
-          await ctx.send(final)
+  async def toc (self, ctx, *, *args):
+    sentences=''.join(args)
+    if sentences[-1] == '.':
+        sentences= sentences[:-1]
+    sens = sentences.split('.')
+    
+    for sen in sens:
+        final = final + t.toCocanb(sen) + ". "
+        await ctx.send(final)
       
   @bot.command (name="script", help= "Sends the Cocánb symbols\nSupported: cocanb/cocánb, cock, and, ball, torture, shit, cringe, constriction, onomatopoeia/onomatopœia, altort\n(Words separated with / output the same thing)")
   async def script(self, ctx, *, word):
