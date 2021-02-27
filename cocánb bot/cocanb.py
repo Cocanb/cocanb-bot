@@ -25,7 +25,7 @@ class Cocanb(commands.Cog):
       arg = ' '.join(args)
         
       arg = arg.replace(".", ". ")
-      arg = arg.replace(",", ", ")
+      arg = arg.replace(",", "")
       arg = arg.replace("!", "! ")
       arg = arg.replace("?", "? ")
   
