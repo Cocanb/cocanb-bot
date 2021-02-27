@@ -205,10 +205,13 @@ def toCocanb(s):
                 #carrying out separation
 
                 else:
-                    endl.append(trueLast(word))
-                    endn.append(trueLen(word))
-                    final1 += word[:endl[-1]]
-                    final2 += word[endl[-1]::] + CONV(endn[-1])
+                    if len(word)==1:
+                        final1+=word
+                    else:
+                        endl.append(trueLast(word))
+                        endn.append(trueLen(word))
+                        final1 += word[:endl[-1]]
+                        final2 += word[endl[-1]::] + CONV(endn[-1])
         else:
             final1 += word
             if word[-1] == '"':
