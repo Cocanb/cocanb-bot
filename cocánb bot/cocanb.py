@@ -21,23 +21,23 @@ class Cocanb(commands.Cog):
 
   @bot.command(name="toc", help="Translate from any language into Cocanb")
   async def toc (self, ctx, *args):
-    try:  
-        arg = ' '.join(args)
-            
-        arg = arg.replace(".", ". ")
-        arg = arg.replace(",", "")
-        arg = arg.replace("!", "! ")
-        arg = arg.replace("?", "? ")
+    try:
+      arg = ' '.join(args)
+          
+      arg = arg.replace(".", " . ")
+      arg = arg.replace(",", "")
+      arg = arg.replace("!", " ! ")
+      arg = arg.replace("?", " ? ")
 
-        templ = list(arg)
-        for x in range(len(templ)):
-            templ[x] = templ[x].lower()
-        
-        final = t.handleSentences(''.join(templ))
-        await ctx.message.delete()
-        await ctx.send('[{.author.mention}]: '.format(ctx) + final)
+      templ = list(arg)
+      for x in range(len(templ)):
+          templ[x] = templ[x].lower()
+      
+      final = t.handleSentences(''.join(templ))
+      await ctx.message.delete()
+      await ctx.send('[{.author.mention}]: '.format(ctx) + final)
     except:
-        await ctx.send("[{.author.mention}] Translate from any language into Cocanb".format(ctx))
+      await ctx.send('Insufficient permissions!')
       
   @bot.command (name="script", help= "Sends the Cocánb symbols\nSupported: cocanb/cocánb, cock, and, ball, torture, shit, cringe, constriction, onomatopoeia/onomatopœia, altort\n(Words separated with / output the same thing)")
   async def script(self, ctx, *, word):
