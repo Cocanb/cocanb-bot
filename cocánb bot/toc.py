@@ -2,6 +2,9 @@ import random
 import unidecode
 
 
+def RAND():
+    return random.randint(random.randint(1,5),random.randint(5,8))
+
 def addDiaretics(char,nec):
     a = ["ā","ă","ą","ä","à","á","â","ã"]
     e = ["ė","ę","ě","ĕ","è","é","ê","ë","ē"]
@@ -140,13 +143,47 @@ def toCocanb(s):
                 temp[x-2] = addDiaretics("o",True)
                 final = ''.join(temp)
 
-    i = random.randint(1,8)
+    i = RAND()
     while(i<len(final)):
         final = final[:i] + " " + final[i::]
-        i += random.randint(1,8)
+        i += RAND()
 
     leng = len(final)//3
     for x in range(1,leng):
         final = final.replace(' '*x, ' ')
 
     return final[0].upper() + final[1::]
+
+def handleSentences(s):
+    final = ""
+
+    sens = []
+    punc = []
+    prev=0
+
+    for x in range(len(s)-1,1,-1):
+        if s[x] != ' ':
+            if s[x] not in ['.','?','!']:
+                s = s + '.'
+            break
+                
+    size = len(s)
+
+    for x in range(size):
+        if s[x] == '.' or s[x] == '?' or s[x] == '!':
+            punc.append(s[x])
+            sens.append(s[prev:x])
+            prev = x+1
+    
+
+    sens.append(s[prev::])
+
+    i=0
+
+    for sen in sens:
+        if(len(sen.replace(' '*len(sen),'')))==0:
+            continue
+        final = final + toCocanb(sen[0].upper() + sen[1::]) + punc[i] + " "
+        i+=1
+
+    return final
