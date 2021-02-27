@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 
 from unicodedata import *
+import unicodedata
 
 bot = commands.Bot(command_prefix='*', description='A bot for members of the Cocánb')
 
@@ -34,7 +35,15 @@ class Unicode(commands.Cog):
       pass
     code = '`U+' + response + '`'
     await ctx.send(code.upper())
-
+  
+  @bot.command(name='todesc', help='Converts unicode codepoint to description')
+  async def todesc(self, ctx, codepoint):
+    char=chr(int(codepoint, 16))
+    try:
+      await ctx.send(unicodedata.name(char))
+    except:
+      await ctx.send('<no description>')
+    
   @bot.command(name='unicode', help='Sends full unicode chart')
   async def unicode(self, ctx):
       with open("Full Unicode Chart.zip", "rb") as file:
